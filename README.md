@@ -86,7 +86,7 @@ And subscribe to the topic `test1/test2` on aws-iot-mqtt.
 <!-- For testing AWS IoT MQTT to ROS, uncomment this -->
 <node name="listener" pkg="aws_mqtt_bridge" type="listener.py" output="screen" />
 ```
-And publish to the topic `aws_to_device/chatter` on aws-iot-mqtt.
+>> And publish to the topic `aws_to_device/chatter` on aws-iot-mqtt.
 >> - {
 >>  "data": "Hello, this is the message from AWS IoT"
 >> }
@@ -94,7 +94,7 @@ And publish to the topic `aws_to_device/chatter` on aws-iot-mqtt.
 ```
 $ rosrun turtlesim turtlesim_node
 ```
-And publish to the topic `aws_to_device/turtlesim`
+>> And publish to the topic `aws_to_device/turtlesim`
 >> - {
 >>  "linear": {
 >>    "x": 2.0,
