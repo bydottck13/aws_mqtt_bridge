@@ -1,0 +1,9 @@
+<launch>
+  <node name="aws_mqtt_node" pkg="aws_mqtt_bridge" type="aws_mqtt_node.py" output="screen" >
+  	<rosparam command="load" file="$(find aws_mqtt_bridge)/config/demo_params.yaml" />
+  </node>
+  <!-- For testing AWS IoT MQTT to ROS, uncomment this -->
+  <!--<node name="listener" pkg="aws_mqtt_bridge" type="listener.py" output="screen" />-->
+  <!-- For testing ROS to AWS IoT MQTT, uncomment this -->
+  <!--<node name="talker" pkg="aws_mqtt_bridge" type="talker.py" output="screen" />-->
+</launch>

@@ -1,0 +1,15 @@
+mqtt:
+  host: {YOUR-AWS-MQTT-HOST}
+  rootCAPath: {YOUR-AWS-MQTT-ROOT-CA}
+  certificatePath: {YOUR-AWS-MQTT-CERTIFICATE}
+  privateKeyPath: {YOUR-AWS-MQTT-PRIVATE-KEY}
+  clientId: {CLIENT-ID}
+bridge:
+  # payload with the String format
+  - msg_type: std_msgs.msg:String
+    topic_from: aws_to_device/chatter
+    topic_to: chatter
+  # payload with the Twist format
+  - msg_type: geometry_msgs.msg:Twist
+    topic_from: aws_to_device/turtlesim
+    topic_to: /turtle1/cmd_vel

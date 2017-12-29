@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>aws_mqtt_bridge</name>
+  <version>0.1.0</version>
+  <description>The aws_mqtt_bridge package</description>
+
+  <author email="bydottck13@gmail.com">Brown</author>
+  <maintainer email="bydottck13@gmail.com">Brown</maintainer>
+
+  <license>BSD</license>
+
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <export>
+
+  </export>
+</package>
