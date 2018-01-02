@@ -34,7 +34,12 @@ From ROS device, publish to `publish_to_aws` with the payload in `MQTT_publish.m
 ```
 $ git clone https://github.com/aws/aws-iot-device-sdk-python.git
 $ cd aws-iot-device-sdk-python
-$ python setup.py install
+$ sudo python setup.py install
+```
+* relative python packages
+```
+$ sudo apt install python-pip
+$ pip install inject
 ```
 * aws_mqtt_bridge
 > - Create the `catkin_ws` directory

@@ -10,7 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
-#catkin_python_setup()
+catkin_python_setup()
 
 ################################################
 ## Declare ROS messages, services and actions ##
@@ -20,6 +20,11 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    MQTT_publish.msg
+ )
+
+generate_messages(
+   DEPENDENCIES
+   std_msgs
  )
 
 ###################################
