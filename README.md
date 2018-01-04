@@ -39,7 +39,7 @@ $ sudo python setup.py install
 * relative python packages
 ```
 $ sudo apt install python-pip
-$ pip install inject
+$ sudo pip install inject
 ```
 * aws_mqtt_bridge
 > - Create the `catkin_ws` directory
@@ -47,6 +47,7 @@ $ pip install inject
 $ source /opt/ros/kinetic/setup.bash
 $ mkdir -p ~/catkin_ws
 $ cd ~/catkin_ws
+$ mkdir src
 $ catkin_make
 ```
 > - Make the `aws_mqtt_bridge`
@@ -70,6 +71,7 @@ mqtt:
 ```
 And launch the aws_mqtt_bridge package:
 ```
+$ source devel/setup.bash
 $ roslaunch aws_mqtt_bridge demo.launch
 ```
 
