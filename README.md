@@ -33,8 +33,7 @@ From ROS device, publish to `publish_to_aws` with the payload in `MQTT_publish.m
 * relative python packages
 ```
 $ sudo apt install python-pip
-$ sudo pip install inject
-$ sudo pip install AWSIoTPythonSDK
+$ sudo pip install -r requirements.txt
 ```
 * aws_mqtt_bridge
 > - Create the `catkin_ws` directory
