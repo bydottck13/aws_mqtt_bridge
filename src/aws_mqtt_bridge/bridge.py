@@ -30,7 +30,7 @@ class RosToAwsBridge(Bridge):
         rospy.Subscriber(topic_from, MQTT_publish, self._callback_ros)
 
     def _callback_ros(self, msg):
-        rospy.loginfo(rospy.get_caller_id() + " Publish to the AWS IoT topic '%s' with the payload '%s'" % (msg.topic, msg.payload))
+        rospy.logdebug(rospy.get_caller_id() + " Publish to the AWS IoT topic '%s' with the payload '%s'" % (msg.topic, msg.payload))
         # Publish to AWS IoT
         self._aws_mqtt_client.publish(msg.topic, msg.payload, 1)
 
@@ -45,19 +45,19 @@ class AwsToRosBridge(Bridge):
         self._topic_to = topic_to
         # Subscribe to AWS IoT
         self._aws_mqtt_client.subscribe(topic_from, 1, self._callback_aws_iot)
-        rospy.loginfo("Subscribe to the topic %s", topic_from)
+        rospy.loginfo(rospy.get_caller_id() + " Subscribe to the topic %s", topic_from)
         self._publisher = rospy.Publisher(self._topic_to, self._msg_type_obj, queue_size=10)
 
     def _callback_aws_iot(self, client, userdata, message):
         rospy.logdebug("Received a MQTT message: topic is '%s', and payload is '%s'" % (message.topic, message.payload))
         decodeMQTTJson = json.loads(message.payload)
         ros_msg = convert_json_to_ros_message(self._msg_type, decodeMQTTJson)
-        rospy.loginfo(rospy.get_caller_id() + " Publish to the ROS topic '%s' with the payload:", self._topic_to)
-        print json.dumps(message.payload)
+        rospy.logdebug(rospy.get_caller_id() + " Publish to the ROS topic '%s' with the payload:", self._topic_to)
+        rospy.logdebug(json.dumps(message.payload))
         self._publisher.publish(ros_msg)
 
     def on_shutdown(self):
-        rospy.logdebug("shutdown AwsToRosBridge...")
+        rospy.logdebug("unsubscribe %s..." %(self._topic_from))
         self._aws_mqtt_client.unsubscribe(self._topic_from)
 
 __all__ = ['create_publish_bridge', 'create_subscribe_bridge', 'Bridge', 'RosToAwsBridge', 'AwsToRosBridge']

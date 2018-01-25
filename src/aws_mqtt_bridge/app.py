@@ -17,7 +17,7 @@ def create_config(aws_mqtt_client):
 
 def aws_mqtt_node():
     # init node
-    rospy.init_node('aws_mqtt_node', anonymous=True)
+    rospy.init_node('aws_mqtt_node', anonymous=True, log_level=rospy.DEBUG)
 
     # load parameters
     params = rospy.get_param("~", {})
@@ -57,7 +57,7 @@ def aws_mqtt_node():
     for bridge_args in bridge_params:
         bridges.append(create_subscribe_bridge(**bridge_args))
 
-    rospy.loginfo("All settings are ready!")
+    rospy.loginfo(rospy.get_caller_id()+" All settings are ready!")
 
     # spin() simply keeps python from exiting until this node is stopped
     for bridge in bridges:
