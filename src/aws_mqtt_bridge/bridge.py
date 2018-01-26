@@ -51,10 +51,15 @@ class AwsToRosBridge(Bridge):
     def _callback_aws_iot(self, client, userdata, message):
         rospy.logdebug("Received a MQTT message: topic is '%s', and payload is '%s'" % (message.topic, message.payload))
         decodeMQTTJson = json.loads(message.payload)
-        ros_msg = convert_json_to_ros_message(self._msg_type, decodeMQTTJson)
-        rospy.logdebug(rospy.get_caller_id() + " Publish to the ROS topic '%s' with the payload:", self._topic_to)
-        rospy.logdebug(json.dumps(message.payload))
-        self._publisher.publish(ros_msg)
+        ros_msg = None
+        try:
+            ros_msg = convert_json_to_ros_message(self._msg_type, decodeMQTTJson)
+        except Exception, e:
+            rospy.logerr(str(e))
+        else:
+            rospy.logdebug(rospy.get_caller_id() + " Publish to the ROS topic '%s' with the payload:", self._topic_to)
+            rospy.logdebug(json.dumps(message.payload))
+            self._publisher.publish(ros_msg)
 
     def on_shutdown(self):
         rospy.logdebug("unsubscribe %s..." %(self._topic_from))
